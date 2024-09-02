@@ -1,0 +1,68 @@
+---
+title: "MUSTARD"
+author: "Haotian Zhuang"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MUSTARD}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+We will demonstrate how to use MUSTARD to perform trajectory-guided dimension reduction for multi-sample single-cell RNA-seq data.
+
+The bone marrow scRNA-seq dataset sequenced in 10x Genomics platform from 8 healthy donors was downloaded from the [Human Cell Atlas (HCA) data portal](https://explore.data.humancellatlas.org/projects/cc95ff89-2e68-4a08-a234-480eca21ce79).
+
+# Load packages and datasets
+```{r setup}
+library(MUSTARD)
+expr <- readRDS(system.file("extdata", "expr.rds", package = "MUSTARD"))
+pseudotime <- readRDS(system.file("extdata", "pseudotime.rds", package = "MUSTARD"))
+cellanno <- readRDS(system.file("extdata", "cellanno.rds", package = "MUSTARD"))
+
+str(expr)
+str(pseudotime)
+str(cellanno)
+
+```
+
+# Cell binning
+```{r}
+binRes <- bin_cells(expr = expr, pseudotime = pseudotime, cellanno = cellanno)
+str(binRes$expr)
+str(binRes$pseudotime)
+str(binRes$cellanno)
+```
+
+# Gene scaling
+```{r}
+expr_sc <- scale_genes(expr = binRes$expr)
+```
+
+# Run MUSTARD
+```{r}
+mustardRes <- mustard(expr = expr_sc, pseudotime = binRes$pseudotime, cellanno = binRes$cellanno)
+str(mustardRes)
+```
+
+# Visualize loadings
+```{r}
+library(ggplot2)
+meta <- readRDS(system.file("extdata", "meta.rds", package = "MUSTARD"))
+str(meta)
+```
+
+<details>
+  <summary>**Session Info**</summary>
+```{r}
+sessionInfo()
+```
+</details>
