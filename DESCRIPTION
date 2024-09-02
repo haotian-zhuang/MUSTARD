@@ -8,9 +8,11 @@ Description: Trajectory-guided dimension reduction for multi-sample single-cell 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
+    ggplot2,
     irlba,
-    Matrix
+    Matrix,
+    matrixStats
 URL: https://haotian-zhuang.github.io/MUSTARD/, https://github.com/haotian-zhuang/MUSTARD
 BugReports: https://github.com/haotian-zhuang/MUSTARD/issues

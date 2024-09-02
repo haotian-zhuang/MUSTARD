@@ -45,6 +45,7 @@ str(binRes$cellanno)
 # Gene scaling
 ```{r}
 expr_sc <- scale_genes(expr = binRes$expr)
+str(expr_sc)
 ```
 
 # Run MUSTARD
@@ -58,6 +59,9 @@ str(mustardRes)
 library(ggplot2)
 meta <- readRDS(system.file("extdata", "meta.rds", package = "MUSTARD"))
 str(meta)
+plot_temporal_loading(res = mustardRes)
+plot_sample_loading(res = mustardRes, meta = meta, group = "gender")
+plot_gene_loading(res = mustardRes)
 ```
 
 <details>

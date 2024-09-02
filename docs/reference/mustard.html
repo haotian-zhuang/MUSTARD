@@ -46,7 +46,7 @@
 <span>  interval <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  r <span class="op">=</span> <span class="fl">3</span>,</span>
 <span>  resolution <span class="op">=</span> <span class="fl">101</span>,</span>
-<span>  smooth <span class="op">=</span> <span class="fl">1e-06</span>,</span>
+<span>  smooth <span class="op">=</span> <span class="fl">0.001</span>,</span>
 <span>  maxiter <span class="op">=</span> <span class="fl">20</span>,</span>
 <span>  epsilon <span class="op">=</span> <span class="fl">1e-04</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -81,7 +81,7 @@
 
 
 <dt id="arg-smooth">smooth<a class="anchor" aria-label="anchor" href="#arg-smooth"></a></dt>
-<dd><p>Smoothing parameter for RKHS norm (1e-6 by default). Larger value means smoother temporal loading functions</p></dd>
+<dd><p>Smoothing parameter for RKHS norm (1e-3 by default). Larger value means smoother temporal loading functions</p></dd>
 
 
 <dt id="arg-maxiter">maxiter<a class="anchor" aria-label="anchor" href="#arg-maxiter"></a></dt>
@@ -94,7 +94,7 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list with the estimated loadings and explained variances</p><dl><dt>A.hat</dt>
+    <p>A list including the estimated loadings and explained variances</p><dl><dt>A.hat</dt>
 <dd><p>Sample loading matrix</p></dd>
 
 <dt>B.hat</dt>

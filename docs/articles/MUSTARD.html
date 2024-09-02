@@ -54,7 +54,7 @@
                         <h4 data-toc-skip class="author">Haotian
 Zhuang</h4>
             
-            <h4 data-toc-skip class="date">August 31, 2024</h4>
+            <h4 data-toc-skip class="date">September 02, 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/haotian-zhuang/MUSTARD/blob/HEAD/vignettes/MUSTARD.Rmd" class="external-link"><code>vignettes/MUSTARD.Rmd</code></a></small>
       <div class="d-none name"><code>MUSTARD.Rmd</code></div>
@@ -79,7 +79,7 @@ Cell Atlas (HCA) data portal</a>.</p>
 <span><span class="va">expr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"expr.rds"</span>, package <span class="op">=</span> <span class="st">"MUSTARD"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">pseudotime</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"pseudotime.rds"</span>, package <span class="op">=</span> <span class="st">"MUSTARD"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">cellanno</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"cellanno.rds"</span>, package <span class="op">=</span> <span class="st">"MUSTARD"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"meta.rds"</span>, package <span class="op">=</span> <span class="st">"MUSTARD"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">expr</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  num [1:100, 1:9683] 0.0936 0.3068 0.0384 0.3973 0.0868 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
@@ -90,48 +90,102 @@ Cell Atlas (HCA) data portal</a>.</p>
 <span><span class="co">#&gt;  - attr(*, "names")= chr [1:9683] "BM2:50:male_217358" "BM4:29:male_5693" "BM4:29:male_98290" "BM5:29:male_237878" ...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">cellanno</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  Named chr [1:9683] "BM2:50:male" "BM4:29:male" "BM4:29:male" "BM5:29:male" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "names")= chr [1:9683] "BM2:50:male_217358" "BM4:29:male_5693" "BM4:29:male_98290" "BM5:29:male_237878" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "names")= chr [1:9683] "BM2:50:male_217358" "BM4:29:male_5693" "BM4:29:male_98290" "BM5:29:male_237878" ...</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="cell-binning">Cell binning<a class="anchor" aria-label="anchor" href="#cell-binning"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">binRes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bin_cells.html">bin_cells</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">expr</span>, pseudotime <span class="op">=</span> <span class="va">pseudotime</span>, cellanno <span class="op">=</span> <span class="va">cellanno</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">binRes</span><span class="op">$</span><span class="va">expr</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  num [1:100, 1:398] 0.0936 0.1336 0.0398 0.1725 0.0868 ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   ..$ : chr [1:100] "ZFY" "KDM5D" "USP9Y" "UTY" ...</span></span>
+<span><span class="co">#&gt;   ..$ : chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">binRes</span><span class="op">$</span><span class="va">pseudotime</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  Named num [1:398] 97.8 291.5 485.1 678.7 872.4 ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "names")= chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">binRes</span><span class="op">$</span><span class="va">cellanno</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  Named chr [1:398] "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "names")= chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="gene-scaling">Gene scaling<a class="anchor" aria-label="anchor" href="#gene-scaling"></a>
+</h2>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">expr_sc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scale_genes.html">scale_genes</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">binRes</span><span class="op">$</span><span class="va">expr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">expr_sc</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  num [1:100, 1:398] 0.415 0.909 0.492 0.391 1.157 ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   ..$ : chr [1:100] "ZFY" "KDM5D" "USP9Y" "UTY" ...</span></span>
+<span><span class="co">#&gt;   ..$ : chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="run-mustard">Run MUSTARD<a class="anchor" aria-label="anchor" href="#run-mustard"></a>
+</h2>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mustardRes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mustard.html">mustard</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">expr_sc</span>, pseudotime <span class="op">=</span> <span class="va">binRes</span><span class="op">$</span><span class="va">pseudotime</span>, cellanno <span class="op">=</span> <span class="va">binRes</span><span class="op">$</span><span class="va">cellanno</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Calculate the 1th Component"</span></span>
+<span><span class="co">#&gt; [1] "Convergence reached at dif=8.279816644893e-06, iter=5"</span></span>
+<span><span class="co">#&gt; [1] "Calculate the 2th Component"</span></span>
+<span><span class="co">#&gt; [1] "Convergence reached at dif=6.94435616459618e-05, iter=8"</span></span>
+<span><span class="co">#&gt; [1] "Calculate the 3th Component"</span></span>
+<span><span class="co">#&gt; [1] "Convergence reached at dif=6.0445328315268e-05, iter=10"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">mustardRes</span><span class="op">)</span></span>
+<span><span class="co">#&gt; List of 7</span></span>
+<span><span class="co">#&gt;  $ A.hat         : num [1:8, 1:3] -0.373 -0.248 -0.353 0.31 0.411 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ : chr [1:8] "BM2" "BM4" "BM5" "BM7" ...</span></span>
+<span><span class="co">#&gt;   .. ..$ : chr [1:3] "Component1" "Component2" "Component3"</span></span>
+<span><span class="co">#&gt;  $ B.hat         : num [1:100, 1:3] -0.118 -0.123 -0.112 -0.118 -0.111 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ : chr [1:100] "ZFY" "KDM5D" "USP9Y" "UTY" ...</span></span>
+<span><span class="co">#&gt;   .. ..$ : chr [1:3] "Component1" "Component2" "Component3"</span></span>
+<span><span class="co">#&gt;  $ Phi.hat       : num [1:101, 1:3] 0.0972 0.0973 0.0975 0.0976 0.0977 ...</span></span>
+<span><span class="co">#&gt;   ..- attr(*, "dimnames")=List of 2</span></span>
+<span><span class="co">#&gt;   .. ..$ : NULL</span></span>
+<span><span class="co">#&gt;   .. ..$ : chr [1:3] "Component1" "Component2" "Component3"</span></span>
+<span><span class="co">#&gt;  $ time          : num [1:101] 97.8 192.7 287.6 382.5 477.4 ...</span></span>
+<span><span class="co">#&gt;  $ Lambda        : num [1:3] 223.9 38.6 79.6</span></span>
+<span><span class="co">#&gt;  $ r.square      : num [1:3] 0.6319 0.0514 0.2288</span></span>
+<span><span class="co">#&gt;  $ accum.r.square: num [1:3] 0.632 0.651 0.731</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="visualize-loadings">Visualize loadings<a class="anchor" aria-label="anchor" href="#visualize-loadings"></a>
+</h2>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"meta.rds"</span>, package <span class="op">=</span> <span class="st">"MUSTARD"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    8 obs. of  4 variables:</span></span>
 <span><span class="co">#&gt;  $ intercept  : num  1 1 1 1 1 1 1 1</span></span>
 <span><span class="co">#&gt;  $ gender     : chr  "male" "male" "male" "female" ...</span></span>
 <span><span class="co">#&gt;  $ age        : chr  "50" "29" "29" "36" ...</span></span>
-<span><span class="co">#&gt;  $ Sample_name: chr  "BM2:50:male" "BM4:29:male" "BM5:29:male" "BM7:36:female" ...</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="fit-the-gene-expression-along-spatial-locations">Fit the gene expression along spatial locations<a class="anchor" aria-label="anchor" href="#fit-the-gene-expression-along-spatial-locations"></a>
-</h2>
-</div>
-<div class="section level2">
-<h2 id="identify-spatially-variable-genes-svgs">Identify spatially variable genes (SVGs)<a class="anchor" aria-label="anchor" href="#identify-spatially-variable-genes-svgs"></a>
-</h2>
-</div>
-<div class="section level2">
-<h2 id="visualize-the-fitted-expression">Visualize the fitted expression<a class="anchor" aria-label="anchor" href="#visualize-the-fitted-expression"></a>
-</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ Sample_name: chr  "BM2:50:male" "BM4:29:male" "BM5:29:male" "BM7:36:female" ...</span></span>
+<span><span class="fu"><a href="../reference/plot_temporal_loading.html">plot_temporal_loading</a></span><span class="op">(</span>res <span class="op">=</span> <span class="va">mustardRes</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MUSTARD_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_sample_loading.html">plot_sample_loading</a></span><span class="op">(</span>res <span class="op">=</span> <span class="va">mustardRes</span>, meta <span class="op">=</span> <span class="va">meta</span>, group <span class="op">=</span> <span class="st">"gender"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MUSTARD_files/figure-html/unnamed-chunk-5-2.png" width="700"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_gene_loading.html">plot_gene_loading</a></span><span class="op">(</span>res <span class="op">=</span> <span class="va">mustardRes</span><span class="op">)</span></span></code></pre></div>
+<p><img src="MUSTARD_files/figure-html/unnamed-chunk-5-3.png" width="700"></p>
 <details><summary><strong>Session Info</strong>
-</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+</summary><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.4.0 (2024-04-24)</span></span>
-<span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 22.04.4 LTS</span></span>
+<span><span class="co">#&gt; R version 4.4.1 (2024-06-14)</span></span>
+<span><span class="co">#&gt; Platform: aarch64-apple-darwin20</span></span>
+<span><span class="co">#&gt; Running under: macOS Sonoma 14.6</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
-<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
-<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span></span>
+<span><span class="co">#&gt; BLAS:   /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRblas.0.dylib </span></span>
+<span><span class="co">#&gt; LAPACK: /Library/Frameworks/R.framework/Versions/4.4-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; locale:</span></span>
-<span><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
-<span><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
-<span><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
-<span><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
-<span><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
-<span><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span><span class="co">#&gt; [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; time zone: Etc/UTC</span></span>
-<span><span class="co">#&gt; tzcode source: system (glibc)</span></span>
+<span><span class="co">#&gt; time zone: America/New_York</span></span>
+<span><span class="co">#&gt; tzcode source: internal</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; attached base packages:</span></span>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
@@ -140,17 +194,18 @@ Cell Atlas (HCA) data portal</a>.</p>
 <span><span class="co">#&gt; [1] ggplot2_3.5.1 MUSTARD_1.0  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] gtable_0.3.5      jsonlite_1.8.8    dplyr_1.1.4       compiler_4.4.0   </span></span>
-<span><span class="co">#&gt;  [5] tidyselect_1.2.1  jquerylib_0.1.4   systemfonts_1.0.6 scales_1.3.0     </span></span>
-<span><span class="co">#&gt;  [9] textshaping_0.3.7 yaml_2.3.8        fastmap_1.1.1     R6_2.5.1         </span></span>
-<span><span class="co">#&gt; [13] generics_0.1.3    knitr_1.46        htmlwidgets_1.6.4 tibble_3.2.1     </span></span>
-<span><span class="co">#&gt; [17] desc_1.4.3        munsell_0.5.1     bslib_0.7.0       pillar_1.9.0     </span></span>
-<span><span class="co">#&gt; [21] rlang_1.1.1       utf8_1.2.4        cachem_1.0.8      xfun_0.43        </span></span>
-<span><span class="co">#&gt; [25] fs_1.6.4          sass_0.4.9        cli_3.6.2         pkgdown_2.1.0    </span></span>
-<span><span class="co">#&gt; [29] withr_3.0.0       magrittr_2.0.3    digest_0.6.35     grid_4.4.0       </span></span>
-<span><span class="co">#&gt; [33] rstudioapi_0.16.0 lifecycle_1.0.4   vctrs_0.6.5       evaluate_0.23    </span></span>
-<span><span class="co">#&gt; [37] glue_1.7.0        ragg_1.3.0        fansi_1.0.6       colorspace_2.1-0 </span></span>
-<span><span class="co">#&gt; [41] rmarkdown_2.27    tools_4.4.0       pkgconfig_2.0.3   htmltools_0.5.8.1</span></span></code></pre></div>
+<span><span class="co">#&gt;  [1] Matrix_1.7-0      gtable_0.3.5      jsonlite_1.8.8    highr_0.11       </span></span>
+<span><span class="co">#&gt;  [5] compiler_4.4.1    jquerylib_0.1.4   systemfonts_1.1.0 scales_1.3.0     </span></span>
+<span><span class="co">#&gt;  [9] textshaping_0.4.0 yaml_2.3.10       fastmap_1.2.0     lattice_0.22-6   </span></span>
+<span><span class="co">#&gt; [13] R6_2.5.1          labeling_0.4.3    knitr_1.48        htmlwidgets_1.6.4</span></span>
+<span><span class="co">#&gt; [17] tibble_3.2.1      desc_1.4.3        munsell_0.5.1     bslib_0.8.0      </span></span>
+<span><span class="co">#&gt; [21] pillar_1.9.0      rlang_1.1.4       utf8_1.2.4        cachem_1.1.0     </span></span>
+<span><span class="co">#&gt; [25] xfun_0.47         fs_1.6.4          sass_0.4.9        cli_3.6.3        </span></span>
+<span><span class="co">#&gt; [29] withr_3.0.1       pkgdown_2.1.0     magrittr_2.0.3    digest_0.6.37    </span></span>
+<span><span class="co">#&gt; [33] grid_4.4.1        rstudioapi_0.16.0 irlba_2.3.5.1     lifecycle_1.0.4  </span></span>
+<span><span class="co">#&gt; [37] vctrs_0.6.5       evaluate_0.24.0   glue_1.7.0        farver_2.1.2     </span></span>
+<span><span class="co">#&gt; [41] ragg_1.3.2        fansi_1.0.6       colorspace_2.1-1  rmarkdown_2.28   </span></span>
+<span><span class="co">#&gt; [45] matrixStats_1.3.0 tools_4.4.1       pkgconfig_2.0.3   htmltools_0.5.8.1</span></span></code></pre></div>
 </details>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

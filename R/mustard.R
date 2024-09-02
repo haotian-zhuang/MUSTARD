@@ -294,7 +294,7 @@ est_test_sample <- function(expr_test, pseudotime_test, cellanno_test = NULL, re
 #' @return A ggplot2 plot
 #' @export
 #'
-plot_time_loading <- function(res, r = NULL, ...) {
+plot_temporal_loading <- function(res, r = NULL, ...) {
   
   Phi.data <- res$Phi.hat
   if(is.null(r)) { r <- 1:ncol(Phi.data) }
