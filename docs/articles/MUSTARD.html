@@ -84,13 +84,13 @@ Cell Atlas (HCA) data portal</a>.</p>
 <span><span class="co">#&gt;  num [1:100, 1:9683] 0.0936 0.3068 0.0384 0.3973 0.0868 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
 <span><span class="co">#&gt;   ..$ : chr [1:100] "ZFY" "KDM5D" "USP9Y" "UTY" ...</span></span>
-<span><span class="co">#&gt;   ..$ : chr [1:9683] "BM2:50:male_217358" "BM4:29:male_5693" "BM4:29:male_98290" "BM5:29:male_237878" ...</span></span>
+<span><span class="co">#&gt;   ..$ : chr [1:9683] "BM2:217358" "BM4:5693" "BM4:98290" "BM5:237878" ...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">pseudotime</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  Named int [1:9683] 1 2 3 4 5 6 7 8 9 10 ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "names")= chr [1:9683] "BM2:50:male_217358" "BM4:29:male_5693" "BM4:29:male_98290" "BM5:29:male_237878" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "names")= chr [1:9683] "BM2:217358" "BM4:5693" "BM4:98290" "BM5:237878" ...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">cellanno</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  Named chr [1:9683] "BM2:50:male" "BM4:29:male" "BM4:29:male" "BM5:29:male" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "names")= chr [1:9683] "BM2:50:male_217358" "BM4:29:male_5693" "BM4:29:male_98290" "BM5:29:male_237878" ...</span></span></code></pre></div>
+<span><span class="co">#&gt;  Named chr [1:9683] "BM2" "BM4" "BM4" "BM5" "BM7" "BM6" "BM5" "BM1" "BM4" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "names")= chr [1:9683] "BM2:217358" "BM4:5693" "BM4:98290" "BM5:237878" ...</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="cell-binning">Cell binning<a class="anchor" aria-label="anchor" href="#cell-binning"></a>
@@ -101,13 +101,13 @@ Cell Atlas (HCA) data portal</a>.</p>
 <span><span class="co">#&gt;  num [1:100, 1:398] 0.0936 0.1336 0.0398 0.1725 0.0868 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
 <span><span class="co">#&gt;   ..$ : chr [1:100] "ZFY" "KDM5D" "USP9Y" "UTY" ...</span></span>
-<span><span class="co">#&gt;   ..$ : chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span>
+<span><span class="co">#&gt;   ..$ : chr [1:398] "BM2:97.82" "BM2:291.46" "BM2:485.1" "BM2:678.74" ...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">binRes</span><span class="op">$</span><span class="va">pseudotime</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  Named num [1:398] 97.8 291.5 485.1 678.7 872.4 ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "names")= chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span>
+<span><span class="co">#&gt;  - attr(*, "names")= chr [1:398] "BM2:97.82" "BM2:291.46" "BM2:485.1" "BM2:678.74" ...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">binRes</span><span class="op">$</span><span class="va">cellanno</span><span class="op">)</span></span>
 <span><span class="co">#&gt;  Named chr [1:398] "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" "BM2" ...</span></span>
-<span><span class="co">#&gt;  - attr(*, "names")= chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span></code></pre></div>
+<span><span class="co">#&gt;  - attr(*, "names")= chr [1:398] "BM2:97.82" "BM2:291.46" "BM2:485.1" "BM2:678.74" ...</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="gene-scaling">Gene scaling<a class="anchor" aria-label="anchor" href="#gene-scaling"></a>
@@ -118,7 +118,7 @@ Cell Atlas (HCA) data portal</a>.</p>
 <span><span class="co">#&gt;  num [1:100, 1:398] 0.415 0.909 0.492 0.391 1.157 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "dimnames")=List of 2</span></span>
 <span><span class="co">#&gt;   ..$ : chr [1:100] "ZFY" "KDM5D" "USP9Y" "UTY" ...</span></span>
-<span><span class="co">#&gt;   ..$ : chr [1:398] "BM2:50:male:97.82" "BM2:50:male:291.46" "BM2:50:male:485.1" "BM2:50:male:678.74" ...</span></span></code></pre></div>
+<span><span class="co">#&gt;   ..$ : chr [1:398] "BM2:97.82" "BM2:291.46" "BM2:485.1" "BM2:678.74" ...</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="run-mustard">Run MUSTARD<a class="anchor" aria-label="anchor" href="#run-mustard"></a>
@@ -161,7 +161,7 @@ Cell Atlas (HCA) data portal</a>.</p>
 <span><span class="co">#&gt;  $ intercept  : num  1 1 1 1 1 1 1 1</span></span>
 <span><span class="co">#&gt;  $ gender     : chr  "male" "male" "male" "female" ...</span></span>
 <span><span class="co">#&gt;  $ age        : chr  "50" "29" "29" "36" ...</span></span>
-<span><span class="co">#&gt;  $ Sample_name: chr  "BM2:50:male" "BM4:29:male" "BM5:29:male" "BM7:36:female" ...</span></span>
+<span><span class="co">#&gt;  $ Sample_name: chr  "BM2" "BM4" "BM5" "BM7" ...</span></span>
 <span><span class="fu"><a href="../reference/plot_temporal_loading.html">plot_temporal_loading</a></span><span class="op">(</span>res <span class="op">=</span> <span class="va">mustardRes</span><span class="op">)</span></span></code></pre></div>
 <p><img src="MUSTARD_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
