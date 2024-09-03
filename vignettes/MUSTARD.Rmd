@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 # Introduction
 We will demonstrate how to use MUSTARD to perform trajectory-guided dimension reduction for multi-sample single-cell RNA-seq data.
 
-The bone marrow scRNA-seq dataset sequenced in 10x Genomics platform from 8 healthy donors was downloaded from the [Human Cell Atlas (HCA) data portal](https://explore.data.humancellatlas.org/projects/cc95ff89-2e68-4a08-a234-480eca21ce79).
+The bone marrow scRNA-seq dataset sequenced in 10x Genomics platform from 8 healthy donors was downloaded from the [Human Cell Atlas (HCA) data portal](https://explore.data.humancellatlas.org/projects/cc95ff89-2e68-4a08-a234-480eca21ce79). As an illustration, normalization has been performed, and selected genes are retained.
 
 # Load packages and datasets
 ```{r setup}
@@ -35,6 +35,7 @@ str(cellanno)
 ```
 
 # Cell binning
+Cell binning (50 bins by default) is performed to mitigate the sparsity of the original data.
 ```{r}
 binRes <- bin_cells(expr = expr, pseudotime = pseudotime, cellanno = cellanno)
 str(binRes$expr)
@@ -43,6 +44,7 @@ str(binRes$cellanno)
 ```
 
 # Gene scaling
+Feature selection is not performed in this example. In practice, users can select highly variable genes (HVGs) or genes of interest to highlight the biological signal, similar to standard single-cell analysis. The genes are then standardized to have zero mean and unit variance.
 ```{r}
 expr_sc <- scale_genes(expr = binRes$expr)
 str(expr_sc)
@@ -55,6 +57,7 @@ str(mustardRes)
 ```
 
 # Visualize loadings
+Finally, we can load the sample-level metadata and observe that Component 1 captures the gender difference among the samples, and Component 2 captures the monotone trend of genes along the trajectory.
 ```{r}
 library(ggplot2)
 meta <- readRDS(system.file("extdata", "meta.rds", package = "MUSTARD"))

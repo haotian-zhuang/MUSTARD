@@ -54,7 +54,7 @@
                         <h4 data-toc-skip class="author">Haotian
 Zhuang</h4>
             
-            <h4 data-toc-skip class="date">September 02, 2024</h4>
+            <h4 data-toc-skip class="date">September 03, 2024</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/haotian-zhuang/MUSTARD/blob/HEAD/vignettes/MUSTARD.Rmd" class="external-link"><code>vignettes/MUSTARD.Rmd</code></a></small>
       <div class="d-none name"><code>MUSTARD.Rmd</code></div>
@@ -69,7 +69,8 @@ Zhuang</h4>
 dimension reduction for multi-sample single-cell RNA-seq data.</p>
 <p>The bone marrow scRNA-seq dataset sequenced in 10x Genomics platform
 from 8 healthy donors was downloaded from the <a href="https://explore.data.humancellatlas.org/projects/cc95ff89-2e68-4a08-a234-480eca21ce79" class="external-link">Human
-Cell Atlas (HCA) data portal</a>.</p>
+Cell Atlas (HCA) data portal</a>. As an illustration, normalization has
+been performed, and selected genes are retained.</p>
 </div>
 <div class="section level2">
 <h2 id="load-packages-and-datasets">Load packages and datasets<a class="anchor" aria-label="anchor" href="#load-packages-and-datasets"></a>
@@ -95,6 +96,8 @@ Cell Atlas (HCA) data portal</a>.</p>
 <div class="section level2">
 <h2 id="cell-binning">Cell binning<a class="anchor" aria-label="anchor" href="#cell-binning"></a>
 </h2>
+<p>Cell binning (50 bins by default) is performed to mitigate the
+sparsity of the original data.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">binRes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/bin_cells.html">bin_cells</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">expr</span>, pseudotime <span class="op">=</span> <span class="va">pseudotime</span>, cellanno <span class="op">=</span> <span class="va">cellanno</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">binRes</span><span class="op">$</span><span class="va">expr</span><span class="op">)</span></span>
@@ -112,6 +115,11 @@ Cell Atlas (HCA) data portal</a>.</p>
 <div class="section level2">
 <h2 id="gene-scaling">Gene scaling<a class="anchor" aria-label="anchor" href="#gene-scaling"></a>
 </h2>
+<p>Feature selection is not performed in this example. In practice,
+users can select highly variable genes (HVGs) or genes of interest to
+highlight the biological signal, similar to standard single-cell
+analysis. The genes are then standardized to have zero mean and unit
+variance.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">expr_sc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scale_genes.html">scale_genes</a></span><span class="op">(</span>expr <span class="op">=</span> <span class="va">binRes</span><span class="op">$</span><span class="va">expr</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">expr_sc</span><span class="op">)</span></span>
@@ -153,6 +161,10 @@ Cell Atlas (HCA) data portal</a>.</p>
 <div class="section level2">
 <h2 id="visualize-loadings">Visualize loadings<a class="anchor" aria-label="anchor" href="#visualize-loadings"></a>
 </h2>
+<p>Finally, we can load the sample-level metadata and observe that
+Component 1 captures the gender difference among the samples, and
+Component 2 captures the monotone trend of genes along the
+trajectory.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"meta.rds"</span>, package <span class="op">=</span> <span class="st">"MUSTARD"</span><span class="op">)</span><span class="op">)</span></span>

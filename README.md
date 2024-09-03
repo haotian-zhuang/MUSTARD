@@ -16,7 +16,7 @@ Detailed vignettes are available at this [website](https://haotian-zhuang.github
 
 ## Citation
 
-Please cite the following paper:
+Please cite the following paper: Zhuang et al. (2024+)
 
 ## Contact
 
