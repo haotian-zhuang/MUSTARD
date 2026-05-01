@@ -17,7 +17,7 @@ Detailed vignettes are available at this [website](https://haotian-zhuang.github
 
 ## Citation
 
-Please cite the following paper: [Zhuang, Haotian, Xin Gai, Anru R. Zhang, Wenpin Hou, Zhicheng Ji, and Pixu Shi. "Trajectory-guided dimensionality reduction for multi-sample single-cell RNA-seq data reveals biologically relevant sample-level heterogeneity." bioRxiv (2024): 2024-09.](https://www.biorxiv.org/content/10.1101/2024.09.14.613024v1)
+Please cite the following paper: [Haotian Zhuang, Xin Gai, Anru R Zhang, Wenpin Hou, Zhicheng Ji, Pixu Shi. Trajectory-guided dimensionality reduction for multi-sample single-cell RNA-seq data reveals biologically relevant sample-level heterogeneity. Bioinformatics (2026).](https://doi.org/10.1093/bioinformatics/btag192)
 
 ## Contact
 

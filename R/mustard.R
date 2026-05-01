@@ -88,7 +88,7 @@ mustard <- function(expr, pseudotime, cellanno = NULL, interval = NULL, r = 3, r
     # Step 1: initialization.
     print(sprintf("Calculate the %dth Component", s))
 
-    # intialization of b
+    # initialization of b
     data.unfold = NULL
     y <- NULL
     for (i in samp){
@@ -113,7 +113,7 @@ mustard <- function(expr, pseudotime, cellanno = NULL, interval = NULL, r = 3, r
         Ly = c(Ly, list(a.hat[i]*as.numeric(b.hat %*% expr[, cellanno == i])))
       }
       names(Ly) <- samp
-      gc()
+      
       # print("start rkhs")
       phi.hat = freg_rkhs(Ly, a.hat, ind_vec, Kmat, Kmat_output, smooth = smooth)
       # print("finish rkhs")
